@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<!--
+	Dawid Sójka 12.04.2021
+	Udostępniane na podstawie licencji Copyright GNU AGPL 3
+	https://www.gnu.org/licenses/agpl-3.0.txt
+	-->
+	<script type ="text/javascript" src="dsbib.js"></script>
+	<script type ="text/javascript" src="js_start.js"></script>
+	<link rel="stylesheet" href="css.css">
+	<title>Niepewność v1.1</title>
+</head>
+<body>
+	<img src="wzor.png">
+	<br>
+	Liczba do przekopiowania:<input type="number" value="1337" id="doKopiowania">
+	<button onclick="wypelnijKolumne('l')">Przekopiuj po lewej</button>
+	<button onclick="wypelnijKolumne('r')">Przekopiuj po prawej</button>
+	<br>
+	Liczba nawiasów:<input type="number" value="3" id="liczbaNawiasow" name="liczbaNawiasow" min="1" onchange="zmienLiczbeRoznic(this.value)">
+	<br>
+	<br>
+		<div id="liczenie">
+		</div>
+	<br>
+	<br>
+	<br>
+	<span>n:<input type="number" value="3" id="dzielnik"><br></span>
+	Wynik:<p id="wynik">Czekam na działania!</p>
+	<button id="przycisk" class="przycisk" onclick="policz()">Policz</button>
+	<br>
+	<br>
+	<br>
+	<p class="instrukcja">
+		<br><span class="ostrzezenie">ZMIENIANIE LICZBY NAWIASÓW ZERUJE WARTOŚCI NAWIASÓW</span>
+		<br>W przyszłych wersjach postaram sie zrobić żeby tego nie robiło
+		<br>Ta czerwona ramka to pierwiastek XDDD
+		<br>Robie to tak:
+		<br>Odejmuje poszczególne różnice
+		<br>Podnoszę je do kwadratu
+		<br>Sumuje to razem
+		<br>Dziele przez liczbe do podzielenia
+		<br>Wyciągam pierwiastek
+		<br>Sprawdzone na liczbach, które zgadzały się liczone w inny sposób
+	</p>
+
+	<script src="js_end.js"></script>
+</body>
+
+
+
+</html>
+
+

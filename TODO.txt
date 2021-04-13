@@ -1,0 +1,25 @@
+/TODO:
+// owinąć to w formularz - da to pamiętanie danych
+// 		do przemyslenia
+// kopiowanie wartosci kolumnami
+//		trzeba dodac dwa nowe inputy do tego
+// zamienic nazwy w kodzie na angielskie
+// kolorki wg Alicji
+// bardziej rozwinac instrukcje
+// 		strona instrukcji
+//* "Policz" niżej
+//* mniejsza liczba wynikowa
+// nigdy: aktualizacja na bieżąco wzoru
+// napisac z jakiego wzoru sie korzysta
+//* obrazek ze wzorem
+//* żeby zaczynało się z 5 liniami, które są prawidłowo wypełnione id
+// ostatnia para bez plusa
+// poparować w nawiasy
+// kopiowanie wiecej niz jednej wartosci z excela
+	//trzeba zparsowac wartosci po znaku nowej linii i taba
+	//dodatkowe pole na to by musialo byc
+
+//wzor to nie jest c tylko n(n-1)
+// zaokrąglić do x miejsc po przecinku
+//przy zmienianiu ilosci nawiasow nie czysc wartosci
+//0, zeby dalo sie przekopiowac

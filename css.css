@@ -1,0 +1,48 @@
+body {
+	background-color:black;
+	color:orange;
+	font-family:Verdana;
+	}
+.przycisk {
+	color:black;
+	font-weight: bold;
+	font-family:Verdana;
+	background-image:linear-gradient(to right,black,orange);
+	height: 30px;
+	width: 130px;
+}
+
+#liczenie {
+	border: solid red;
+	width: 400px;
+	margin: auto;
+}
+#wynik {
+	font-size: 3rem;
+	background: -webkit-linear-gradient(lime, dodgerblue);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.ostrzezenie{
+	color:red;
+	font-weight: bold;
+	font-size:2rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
