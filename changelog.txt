@@ -1,0 +1,17 @@
+v1.0 - pierwsza wersja
+v1.1:
+	dodano mozliwosc kopiowania po kolumnach;
+	zamiast n w mianowniku teraz jest n(n-1);
+	dodano podstawową instrukcję;
+v1.2:
+	dodano możliwość wklejania kolumn z Excela, co umożliwi jeszcze szybsze wprowadzanie danych, razem z tym dodano instrukcję do tego;
+	od teraz aplikacja sama zaczyna z trzema wierszami, w ten sposob jest ona czytelniejsza
+	
+
+
+
+
+
+
+
+

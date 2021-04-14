@@ -9,6 +9,10 @@ let liczba_par = 0
 //globalna zeby mozna bylo z niej korzystac w wielu funkcjach
 
 function zmienLiczbeRoznic(n){
+	//najpierw ogarniac ile jest
+	//policzyc ile trzeba dodac/odjac zeby bylo git
+	//jak bedzie wiecej to git, bo po prostu sie dopisze
+	//jak mniej to troche dupa
 	text = ""
 	for(liczba_par = 0; liczba_par < n; liczba_par++) {
 		text += "(<input type='number' placeholder='x"+liczba_par+"' id='l"+ liczba_par +"''>-<input type='number' placeholder='y"+liczba_par+"' id='r"+ liczba_par +"''>)<sup>2</sup>"
@@ -23,24 +27,24 @@ function zmienLiczbeRoznic(n){
 
 //sqrt((l0-r0)^2+(l1+r1)^2+...+(li-ri)^2)
 function policz(){
-	id = ""
-	suma = 0
+	let id = ""
+	let suma = 0
 	for(let i = 0; i<liczba_par; i++){
-		roznica_pary = poID("l"+i).value - poID("r"+i).value
-		kwadrat_roznicy = roznica_pary*roznica_pary
+		let roznica_pary = poID("l"+i).value - poID("r"+i).value
+		let kwadrat_roznicy = roznica_pary*roznica_pary
 		suma += kwadrat_roznicy
 	}
 	//tutaj mamy sume wszystkich kwadratow
 	//dzielimy ja przez dzielnik
-	gotowe_n = poID("dzielnik").value*(poID("dzielnik").value-1)
-	podzielona_suma = suma/gotowe_n
-	pierwiastek_podzielonej_sumy = Math.sqrt(podzielona_suma)
+	let gotowe_n = poID("dzielnik").value*(poID("dzielnik").value-1)
+	let podzielona_suma = suma/gotowe_n
+	let pierwiastek_podzielonej_sumy = Math.sqrt(podzielona_suma)
 	//wyswietlanie wyniku
 	nadpisz(pierwiastek_podzielonej_sumy+"<br>","wynik")
 	//wyswietlanie zaokrągleń
 	//7 i 3 to tak naprawde ile sie chce zaokrągleń
 	for(let i = 7; i>=3; i--){
-		zaokrlaganeDoI = pierwiastek_podzielonej_sumy.toFixed(i)+"<br>"
+		let zaokrlaganeDoI = pierwiastek_podzielonej_sumy.toFixed(i)+"<br>"
 		dopisz(zaokrlaganeDoI,"wynik")
 	}
 
@@ -73,34 +77,80 @@ function wypelnijKolumne(ch){
 	}
 }
 
+function wypelnijKolumnyExcel(){
+	//let wklejone = poID("doParsowaniaExcel").value
+	//sprawdzamy czy zostala wklejona jedna kolumna czy dwie
+	//jezeli nie ma \t to znaczy ze jest jedna
+	if(poID("doParsowaniaExcel").value.search("\t")==(-1)){
+		//debugger;
+		//skoro wiemy ze jest jedna tabela to wystarczy podzielic
+		//po \n, zeby miec poszczegolne elementy
+		let lewaStrona = poID("doParsowaniaExcel").value.split("\n")
 
+		//usuwam puste wyrazy z tabeli
+		//po wklejeniu z excela jest dodatkowy znak \n
+		//i on zostaje, wiec pozbywam sie go
+		while(lewaStrona[lewaStrona.length-1] == ""){
+			lewaStrona.pop()
+		}
+		//USELESS
+		//wypelniamy lewaStrona wyrazami 
+		/*for (let i = 0; i < text.length; i++) {
+			lewaStrona.push(text[i])
+		}*/
+		
+		zmienLiczbeRoznic(lewaStrona.length)
 
+		//aktualizujemy liczbe nawiasow, to tylko dla usera
+		poID("liczbaNawiasow").value = liczba_par
 
-//TODO:
-// owinąć to w formularz - da to pamiętanie danych
-// 		do przemyslenia
-// kopiowanie wartosci kolumnami
-//		trzeba dodac dwa nowe inputy do tego
-// zamienic nazwy w kodzie na angielskie
-// kolorki wg Alicji
-// bardziej rozwinac instrukcje
-// 		strona instrukcji
-//* "Policz" niżej
-//* mniejsza liczba wynikowa
-// nigdy: aktualizacja na bieżąco wzoru
-// napisac z jakiego wzoru sie korzysta
-//* obrazek ze wzorem
-//* żeby zaczynało się z 5 liniami, które są prawidłowo wypełnione id
-// ostatnia para bez plusa
-// poparować w nawiasy
-// kopiowanie wiecej niz jednej wartosci z excela
-	//trzeba zparsowac wartosci po znaku nowej linii i taba
-	//dodatkowe pole na to by musialo byc
+		//wypelniamy lewa strone nawiasow
+		//nie wiem dlaczego ale nie mozna parsowac np "1,1" do floata
+		//dlatego zamieniam "," na "." i dopiero parsuje
+		for (let i = 0; i < liczba_par; i++) {
+			poID("l"+i).value = parseFloat(lewaStrona[i].replace(',', '.'))
+		}
+	}
+	else{
+		//musza byc dwie bo tak jest we wzorze jak nie ma jeden
+		let text = poID("doParsowaniaExcel").value.split("\n")
+		let lewaStrona = []
+		let prawaStrona = []
+		while(text[text.length-1] == ""){
+			text.pop()
+		}
+		for (let i = 0; i < text.length; i++) {
+			lewaStrona.push(text[i].split("\t")[0])
+			prawaStrona.push(text[i].split("\t")[1])
+		}
+		//sprawdzamy czy jest tyle samo liczb z lewej i z prawej
+		//jezeli tak to ustawiamy liczbe par na tyle
+		//i zmieniamy liczbe nawiasow
+		//potem ustawiamy
+		if(lewaStrona.length == prawaStrona.length){
+			zmienLiczbeRoznic(lewaStrona.length)
+			poID("liczbaNawiasow").value = liczba_par
+			for (let i = 0; i < liczba_par; i++) {
+				poID("l"+i).value = parseFloat(lewaStrona[i].replace(',', '.'))
+				poID("r"+i).value = parseFloat(prawaStrona[i].replace(',', '.'))
+			}
+		}
+	}
 
-//wzor to nie jest c tylko n(n-1)
-// zaokrąglić do x miejsc po przecinku
-//przy zmienianiu ilosci nawiasow nie czysc wartosci
-//0, zeby dalo sie przekopiowac
+}
+
+/*
+1,1	5,654
+2,2	5,654
+3,3	5,654
+4,4	5,654
+5,5	5,654
+6,6	5,654
+7,7	5,654
+8,8	5,654
+9,9	5,654
+11	5,654
+*/
 
 
 

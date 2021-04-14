@@ -10,10 +10,13 @@
 	<script type ="text/javascript" src="dsbib.js"></script>
 	<script type ="text/javascript" src="js_start.js"></script>
 	<link rel="stylesheet" href="css.css">
-	<title>Niepewność v1.1</title>
+	<title>Niepewność v1.2</title>
 </head>
 <body>
 	<img src="wzor.png">
+	<br>
+	<textarea placeholder="Excel tutaj, mozna wkleić jedną kolumnę, lub dwie" rows="3" oninput='this.style.height = "";this.style.height = this.scrollHeight + 3 + "px"' id="doParsowaniaExcel"></textarea> 
+	<button onclick="wypelnijKolumnyExcel()">Wypełnij wartościami</button>
 	<br>
 	Liczba do przekopiowania:<input type="number" value="1337" id="doKopiowania">
 	<button onclick="wypelnijKolumne('l')">Przekopiuj po lewej</button>
@@ -28,8 +31,9 @@
 	<br>
 	<br>
 	<span>n:<input type="number" value="3" id="dzielnik"><br></span>
-	Wynik:<p id="wynik">Czekam na działania!</p>
+	<br>
 	<button id="przycisk" class="przycisk" onclick="policz()">Policz</button>
+	Wynik:<p id="wynik">Czekam na działania!</p>
 	<br>
 	<br>
 	<br>
@@ -37,13 +41,43 @@
 		<br><span class="ostrzezenie">ZMIENIANIE LICZBY NAWIASÓW ZERUJE WARTOŚCI NAWIASÓW</span>
 		<br>W przyszłych wersjach postaram sie zrobić żeby tego nie robiło
 		<br>Ta czerwona ramka to pierwiastek XDDD
-		<br>Robie to tak:
+		<br>
+		<br>Obsługa pola Excelowego:
+		<br>Należy kopiować albo jedną albo dwie kolumny bezpośrednio z Excela, np coś takiego:
+		<table>
+			<tr>
+				<td>1</td>
+				<td>2</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>2</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>2</td>
+			</tr>
+		</table>
+		<br>
+		<table>
+			<tr>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td>1</td>
+			</tr>
+		</table>
+		<br>Obliczenia po kolei:
 		<br>Odejmuje poszczególne różnice
 		<br>Podnoszę je do kwadratu
-		<br>Sumuje to razem
+		<br>Sumuje to co dostałem
 		<br>Dziele przez liczbe do podzielenia
 		<br>Wyciągam pierwiastek
-		<br>Sprawdzone na liczbach, które zgadzały się liczone w inny sposób
+		<br>
+		<br>Sprawdzone na liczbach, które zgadzały się liczone w inny sposób, w tym w wersji 1.2
 	</p>
 
 	<script src="js_end.js"></script>
@@ -52,5 +86,15 @@
 
 
 </html>
-
-
+<!--
+1,1	5,654
+2,2	5,654
+3,3	5,654
+4,4	5,654
+5,5	5,654
+6,6	5,654
+7,7	5,654
+8,8	5,654
+9,9	5,654
+11	5,654
+-->

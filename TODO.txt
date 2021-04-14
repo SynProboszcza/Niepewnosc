@@ -7,15 +7,15 @@ TODO:
 		strona instrukcji
 	nigdy: aktualizacja na bieżąco wzoru
 	ostatnia para bez plusa
+	przy zmienianiu ilosci nawiasow nie czysc wartosci
+	0, zeby dalo sie przekopiowac
+---------------------
+---------------------
+DONE:
 	kopiowanie wiecej niz jednej wartosci z excela
 		trzeba zparsowac wartosci po znaku nowej linii i taba
 		dodatkowe pole na to by musialo byc
-		zaokrąglić do x miejsc po przecinku
-	przy zmienianiu ilosci nawiasow nie czysc wartosci
-	0, zeby dalo sie przekopiowac
-
-
-DONE:
+	zaokrąglić do x miejsc po przecinku
 	poparować w nawiasy
 	napisac z jakiego wzoru sie korzysta
 	wzor to nie jest c tylko n(n-1)
