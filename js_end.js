@@ -1,27 +1,103 @@
 window.onload = function(){
-	zmienLiczbeRoznic(poID("liczbaNawiasow").value)
+	zmienLiczbeRoznic(poID("liczbaNawiasow").value,1)
 	//setTimeout(function(){ zmienLiczbeRoznic(poID("liczbaRoznic").value); }, 100)
 }
 //to po to zeby bylo na starcie juz cos
 
 
-let liczba_par = 0
+let liczba_par = poID("liczbaNawiasow").value
 //globalna zeby mozna bylo z niej korzystac w wielu funkcjach
 
-function zmienLiczbeRoznic(n){
-	//najpierw ogarniac ile jest
-	//policzyc ile trzeba dodac/odjac zeby bylo git
-	//jak bedzie wiecej to git, bo po prostu sie dopisze
-	//jak mniej to troche dupa
-	text = ""
-	for(liczba_par = 0; liczba_par < n; liczba_par++) {
-		text += "(<input type='number' placeholder='x"+liczba_par+"' id='l"+ liczba_par +"''>-<input type='number' placeholder='y"+liczba_par+"' id='r"+ liczba_par +"''>)<sup>2</sup>"
-		if(liczba_par != n-1){
-			text+="+<br>"
+function zmienLiczbeRoznic(n,m=0){
+	let ile_zmienic = n - liczba_par
+	if(m!=0 || Math.abs(ile_zmienic) != 1){
+		//te abs() to jest po to ze jak sie wpisze
+		//normalnie liczbe to sie psulo
+		//te ponizej dzialaja tylko dla zmian wartosci +-1
+		//tym samym zakladam ze jak ktos wpisuje recznie
+		//ilosc nawiasow to robi to tylko na poczatku
+		///0000000000000000000000000000000000000000000000000000000000000000
+		let text = ""
+		for(liczba_par = 0; liczba_par < n; liczba_par++) {
+			text += "(<input type='number' placeholder='x"+liczba_par+"' id='l"+ liczba_par +"''>-<input type='number' placeholder='y"+liczba_par+"' id='r"+ liczba_par +"''>)<sup>2</sup>"
+			if(liczba_par != n-1){
+				text+="+<br>"
+			}
+		//li i ri to lewa i prawa z numerkiem
 		}
-	//li i ri to lewa i prawa z numerkiem
+		nadpisz(text,"liczenie")
 	}
-	nadpisz(text,"liczenie")
+	//ile_zmienic = ile dodac wierszy, jezeli jest ujemne to sie odejmuje wiersze
+	//alert(ile_zmienic)
+	//jezeli ile_zmienic > 0 to dopisujemy
+	//jezeli ile_zmienic < 0 to nadpisujemy mniej
+	//jak = 0 to nic nie robimy to niemożliwe
+	//XDXD
+	//jest zero jak sie odpala stronke
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	else if(ile_zmienic>0){
+		let wartosci = []
+		//na parzystych bedzie lewa strona
+		//na nieparz. prawa strona
+		for(let i = 0; i<liczba_par; i++){
+			wartosci.push(poID("l"+i).value)
+			wartosci.push(poID("r"+i).value)
+		}
+
+		let text = ""
+		for(let i = 0; i < ile_zmienic; i++) {
+			text += "+(<input type='number' placeholder='x"+liczba_par+"' id='l"+ liczba_par +"''>-<input type='number' placeholder='y"+liczba_par+"' id='r"+ liczba_par +"''>)<sup>2</sup>"
+			if(liczba_par != n-1){
+				text+="+<br>"
+			}
+		}
+
+		liczba_par++
+		dopisz(text,"liczenie")
+		//mimo tego ze jest "dopisz", to i tak nadpisuje
+		//a raczej wartosci w inputach w divie sie zeruja nie mam pojecia dlaczego
+		//dopisz korzysta z innerHTML += text
+		//wiec dopisujemy wartosci po tym i tak
+		//odwracamy bo uzywamy push() i to naklada wartosci na wartosci
+		//a potem jak chcemy je zdjac w odpowiedniej kolejnosci
+		//to trzeba to odwrocic, wtedy pierwszy element zapisany
+		//bedzie pierwszym elementem do zabrania
+		wartosci = wartosci.reverse()
+		for (let i = 0; i < liczba_par; i++) {
+			poID("l"+i).value = wartosci.pop()
+			poID("r"+i).value = wartosci.pop()
+		}
+	}
+	else if(ile_zmienic<0){
+		//---------------------------------------------------------------
+		let wartosci = []
+		//na parzystych bedzie lewa strona
+		//na nieparz. prawa strona
+		for(let i = 0; i<liczba_par; i++){
+			wartosci.push(poID("l"+i).value)
+			wartosci.push(poID("r"+i).value)
+		}
+
+		let text = ""
+		for(let i = 0; i < liczba_par + ile_zmienic; i++) {
+			text += "(<input type='number' placeholder='x"+i+"' id='l"+ i +"''>-<input type='number' placeholder='y"+i+"' id='r"+ i +"''>)<sup>2</sup>"
+			if(i != n-1){
+				text+="+<br>"
+			}
+		//li i ri to lewa i prawa z numerkiem
+		}
+		liczba_par--
+		nadpisz(text,"liczenie")
+
+		wartosci = wartosci.reverse()
+		for (let i = 0; i < liczba_par; i++) {
+			poID("l"+i).value = wartosci.pop()
+			poID("r"+i).value = wartosci.pop()
+		}
+
+
+	}
+
 }
 
 
@@ -90,8 +166,12 @@ function wypelnijKolumnyExcel(){
 		//usuwam puste wyrazy z tabeli
 		//po wklejeniu z excela jest dodatkowy znak \n
 		//i on zostaje, wiec pozbywam sie go
+		//pozbywamy sie z dolu i z gory
 		while(lewaStrona[lewaStrona.length-1] == ""){
 			lewaStrona.pop()
+		}
+		while(lewaStrona[0] == ""){
+			lewaStrona.shift()
 		}
 		//USELESS
 		//wypelniamy lewaStrona wyrazami 
@@ -99,7 +179,7 @@ function wypelnijKolumnyExcel(){
 			lewaStrona.push(text[i])
 		}*/
 		
-		zmienLiczbeRoznic(lewaStrona.length)
+		zmienLiczbeRoznic(lewaStrona.length,1)
 
 		//aktualizujemy liczbe nawiasow, to tylko dla usera
 		poID("liczbaNawiasow").value = liczba_par
@@ -119,6 +199,9 @@ function wypelnijKolumnyExcel(){
 		while(text[text.length-1] == ""){
 			text.pop()
 		}
+		while(text[0] == ""){
+			text.shift()
+		}
 		for (let i = 0; i < text.length; i++) {
 			lewaStrona.push(text[i].split("\t")[0])
 			prawaStrona.push(text[i].split("\t")[1])
@@ -128,7 +211,7 @@ function wypelnijKolumnyExcel(){
 		//i zmieniamy liczbe nawiasow
 		//potem ustawiamy
 		if(lewaStrona.length == prawaStrona.length){
-			zmienLiczbeRoznic(lewaStrona.length)
+			zmienLiczbeRoznic(lewaStrona.length,1)
 			poID("liczbaNawiasow").value = liczba_par
 			for (let i = 0; i < liczba_par; i++) {
 				poID("l"+i).value = parseFloat(lewaStrona[i].replace(',', '.'))

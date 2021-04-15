@@ -4,8 +4,13 @@ v1.1:
 	zamiast n w mianowniku teraz jest n(n-1);
 	dodano podstawową instrukcję;
 v1.2:
+	dodano changelog, wiec wszystko do tej pory ciskam z pamieci XD
 	dodano możliwość wklejania kolumn z Excela, co umożliwi jeszcze szybsze wprowadzanie danych, razem z tym dodano instrukcję do tego;
 	od teraz aplikacja sama zaczyna z trzema wierszami, w ten sposob jest ona czytelniejsza
+v1.3:
+	od teraz aplikacja nie kasuje wartosci przy zmienianiu liczby nawiasow o jeden - w kolejnych wersjach postaram sie zrobic to lepiej;
+	w związku z tym poszerzyłem nieco instrukcję
+	od teraz pole excelowe kasuje tez \n z góry, a nie tylko z dolu
 	
 
 

@@ -6,12 +6,16 @@ TODO:
 	bardziej rozwinac instrukcje
 		strona instrukcji
 	nigdy: aktualizacja na bieżąco wzoru
-	ostatnia para bez plusa
-	przy zmienianiu ilosci nawiasow nie czysc wartosci
-	0, zeby dalo sie przekopiowac
+	0, zeby dalo sie przekopiowac(???????????????????????)
+	ogarnąć troche ten kod, bo sie robi powoli spaghetti XD
 ---------------------
+DOING:
+	przy zmienianiu ilosci nawiasow nie czysc wartosci
+		+/-1 dziala, ale zadna wieksza liczba juz nie
 ---------------------
 DONE:
+	jak sie wkleja jedna kolumne to trzeba sie tez pozbyc \n z góry
+	ostatnia para bez plusa
 	kopiowanie wiecej niz jednej wartosci z excela
 		trzeba zparsowac wartosci po znaku nowej linii i taba
 		dodatkowe pole na to by musialo byc

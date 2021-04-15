@@ -1,2 +1,3 @@
-# Niepewność 1.2
-Możesz teraz kopiować wartości z Excela! Instrukcja w środku.
+# Niepewność 1.3
+Od teraz przy zmienianiu ilosci nawiasow aplikacja nie czyści wartosci(więcej info w .html)!
+Możesz teraz kopiować wartości z Excela! Instrukcja w .html.
