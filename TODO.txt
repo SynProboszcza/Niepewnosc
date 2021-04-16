@@ -8,6 +8,7 @@ TODO:
 	nigdy: aktualizacja na bieżąco wzoru
 	0, zeby dalo sie przekopiowac(???????????????????????)
 	ogarnąć troche ten kod, bo sie robi powoli spaghetti XD
+	zawinąć instrukcje do rozwijania
 ---------------------
 DOING:
 	przy zmienianiu ilosci nawiasow nie czysc wartosci
