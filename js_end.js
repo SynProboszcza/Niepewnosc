@@ -141,16 +141,9 @@ function policz(){
 }
 
 function wypelnijKolumne(ch){
-	if(ch=="l") {
 		for (let i = 0; i < liczba_par; i++) {
-			poID("l"+i).value = poID("doKopiowania").value
+			poID(ch+i).value = poID("doKopiowania").value
 		}
-	} 
-	else if(ch=="r"){
-		for (let i = 0; i < liczba_par; i++) {
-			poID("r"+i).value = poID("doKopiowania").value
-		}
-	}
 }
 
 function wypelnijKolumnyExcel(){
