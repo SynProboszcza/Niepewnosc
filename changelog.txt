@@ -11,6 +11,8 @@ v1.3:
 	od teraz aplikacja nie kasuje wartosci przy zmienianiu liczby nawiasow o jeden - w kolejnych wersjach postaram sie zrobic to lepiej;
 	w związku z tym poszerzyłem nieco instrukcję
 	od teraz pole excelowe kasuje tez \n z góry, a nie tylko z dolu
+v1.3.1:
+	małe optymalizacje kodu(wypelnijKolumne())
 	
 
 
